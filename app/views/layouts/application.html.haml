@@ -1,0 +1,20 @@
+!!! 5
+%html
+%head
+	%title MusicApp
+	=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	=javascript_include_tag 'application', 'data-turbolinks-track' => true
+	=csrf_meta_tags
+%body
+	%nav.navbar.navbar-default
+		.container
+			.navbar-brand= link_to "Music App", root_path
+
+			%ul.nav.navbar-nav.navbar-right
+				%li= link_to "New song", new_song_path
+
+	.container
+		-flash.each do |name, msg|
+			= content_tag :div, msg, class: 'alert alert-info'
+
+		=yield
