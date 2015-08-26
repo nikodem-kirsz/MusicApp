@@ -16,3 +16,32 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#logo {
+	color: white;
+}
+
+.artist_img {
+		max-width: 220px;
+		max-height: 220px;
+		-webkit-transition: all .3s ease-out;
+	  -moz-transition: all .3s ease-out;
+	  -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+
+.artist_profile_img {
+	width: 	260px;
+	float: left;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.artist_descript {
+	width: 600px;
+	float: left;
+	padding-left: 20px;
+}

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :songs
+  resources :artists do
+    resources :songs
+  end
 
   root "songs#index"
   # The priority is based upon order of creation: first created -> highest priority.

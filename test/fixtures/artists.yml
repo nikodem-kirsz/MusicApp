@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+dave:
+ name: "Dave"
+ description: "Guitarist"
+ origin: "Seattle WA"
+ genres: "Rock"

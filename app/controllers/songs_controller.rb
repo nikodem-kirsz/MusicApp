@@ -1,16 +1,20 @@
 class SongsController < ApplicationController
 	before_action :find_song, only: [:show, :edit, :update, :destroy]
+	before_action :find_artist, only: [:new, :create]
 
 	def index
 		@songs = Song.all.order("created_at DESC")
 	end
 
+	def show
+	end
+
 	def new
-		@song = Song.new
+		@song = @artist.songs.new
 	end
 
 	def create
-		@song = Song.new(song_params)
+		@song = @artist.songs.build(song_params)
 		if @song.save
 			redirect_to @song, notice: "New song addded succesfully!"
 		else
@@ -23,7 +27,8 @@ class SongsController < ApplicationController
 
 	def update
 		if @song.update(song_params)
-			redirect_to @pin, notice: "Song updated succesfully"
+			redirect_to @song
+			flash[:info] = "Song updated succesfully"
 		else
 			render 'edit'
 		end
@@ -31,7 +36,8 @@ class SongsController < ApplicationController
 
 	def destroy
 		@song.destroy
-		redirect_to root_path
+		flash[:success] = "Song deleted succesfully"
+		redirect_to root_url
 	end
 
 		private
@@ -40,7 +46,11 @@ class SongsController < ApplicationController
 				@song = Song.find(params[:id])
 			end
 
+			def find_artist
+				@artist = Artist.find(params[:artist_id])
+			end
+
 			def song_params
-				params.require(:song).permit(:title)
+				params.require(:song).permit(:title, :image)
 			end
 end

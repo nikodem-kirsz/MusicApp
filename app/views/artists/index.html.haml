@@ -1,0 +1,9 @@
+%h1 Artists
+- @artists.each_slice(4) do |artists|
+	.row
+		- artists.each do |artist|
+			.col-md-3	
+				= link_to artist do
+					= image_tag artist.image.url(:medium), class: 'artist_img'
+				%br/
+				%h5= artist.name

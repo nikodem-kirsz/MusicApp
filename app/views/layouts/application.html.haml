@@ -6,15 +6,28 @@
 	=javascript_include_tag 'application', 'data-turbolinks-track' => true
 	=csrf_meta_tags
 %body
-	%nav.navbar.navbar-default
+	%nav.navbar.navbar-default.navbar-inverse
 		.container
-			.navbar-brand= link_to "Music App", root_path
-
-			%ul.nav.navbar-nav.navbar-right
-				%li= link_to "New song", new_song_path
+			.navbar-brand= link_to "Music App", root_path, id: "logo"
+			- if user_signed_in?
+				%ul.nav.navbar-nav.navbar-left
+					%li= link_to "Artists", artists_path
+					%li= link_to "Songs", songs_path
+					%li= link_to "New artist", new_artist_path
+				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "Settings", edit_user_registration_path
+					%li= link_to "Log out", destroy_user_session_path, method: :delete
+			- else
+				%ul.nav.navbar-nav.navbar-left
+					%li= link_to "Artists", artists_path
+					%li= link_to "Songs",	songs_path
+				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "Log in", new_user_session_path
+					%li= link_to "Sign up", new_user_registration_path
 
 	.container
 		-flash.each do |name, msg|
 			= content_tag :div, msg, class: 'alert alert-info'
 
 		=yield
+		=debug(params) if Rails.env.development?

@@ -1,0 +1,6 @@
+= image_tag @song.image.url(:medium), class: "song_image"
+%br/
+%h2= @song.title
+%br/
+= link_to "Edit", edit_artist_song_path(@song.artist, @song), class: "btn btn-default"
+= link_to "Delete", song_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"

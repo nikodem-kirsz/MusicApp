@@ -1,0 +1,14 @@
+= image_tag @artist.image.url(:medium), class: 'artist_profile_img'
+%p.artist_descript= @artist.description
+%p.container
+	%h2= @artist.name
+	%h3= @artist.origin
+	%h3= @artist.genres
+
+
+- @artist.songs.each do |song|
+	%p= link_to song.title, song
+
+=link_to "Add song", new_artist_song_path(@artist), class: 'btn btn primary'
+=link_to "Edit artist", edit_artist_path(@artist), class: 'btn btn primary'
+=link_to "Remove artist", artist_path(@artist), method: :delete, class: 'btn btn-danger'
