@@ -3,7 +3,7 @@
 		#errors
 			%h2
 			= pluralize(@artist.errors.count, "error")
-			prevented this pin from saving
+			prevented this artist from saving
 			%ul
 				- @artist.errors.full_messages.each do |msg|
 					%li= msg
@@ -21,6 +21,6 @@
 		= f.input :origin, input_html: { class: 'form-control' }
 
 	.form-group
-		= f.input :genres, input_html: { class: 'form-control' }
+		= f.input :genres, :collection => ["Alternative", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "None"].sort, input_html: { class: 'form-control' }
 
 	= f.button :submit, class: 'btn btn-primary'

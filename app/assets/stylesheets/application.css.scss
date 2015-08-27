@@ -21,9 +21,14 @@
 	color: white;
 }
 
-.artist_img {
-		max-width: 220px;
-		max-height: 220px;
+.bg {
+	background-color: black;
+}
+
+.artist_img, .song_img {
+		width: 180px;
+		height: 180px;
+		border-radius: 25px;
 		-webkit-transition: all .3s ease-out;
 	  -moz-transition: all .3s ease-out;
 	  -o-transition: all .3s ease-out;

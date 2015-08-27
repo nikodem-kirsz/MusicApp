@@ -1,9 +1,12 @@
 class ArtistsController < ApplicationController
 	before_action :find_artist, only: [:show, :edit, :update, :destroy]
-	before_action :logged_in?, only: [:new, :create, :edit, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@artists = Artist.all.order("created_at DESC")
+	end
+
+	def show
 	end
 
 	def new

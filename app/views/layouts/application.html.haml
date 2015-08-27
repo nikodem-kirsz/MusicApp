@@ -5,6 +5,8 @@
 	=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
 	=javascript_include_tag 'application', 'data-turbolinks-track' => true
 	=csrf_meta_tags
+	=javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'
+	=mp3_player_headers without_swfobject: true
 %body
 	%nav.navbar.navbar-default.navbar-inverse
 		.container
@@ -15,6 +17,7 @@
 					%li= link_to "Songs", songs_path
 					%li= link_to "New artist", new_artist_path
 				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "My content", '#'
 					%li= link_to "Settings", edit_user_registration_path
 					%li= link_to "Log out", destroy_user_session_path, method: :delete
 			- else
