@@ -1,36 +1,18 @@
 !!! 5
 %html
-%head
-	%title MusicApp
-	=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-	=javascript_include_tag 'application', 'data-turbolinks-track' => true
-	=csrf_meta_tags
-	=javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'
-	=mp3_player_headers without_swfobject: true
-%body
-	%nav.navbar.navbar-default.navbar-inverse
-		.container
-			.navbar-brand= link_to "Music App", root_path, id: "logo"
-			- if user_signed_in?
-				%ul.nav.navbar-nav.navbar-left
-					%li= link_to "Artists", artists_path
-					%li= link_to "Songs", songs_path
-					%li= link_to "New artist", new_artist_path
-				%ul.nav.navbar-nav.navbar-right
-					%li= link_to "My content", '#'
-					%li= link_to "Settings", edit_user_registration_path
-					%li= link_to "Log out", destroy_user_session_path, method: :delete
-			- else
-				%ul.nav.navbar-nav.navbar-left
-					%li= link_to "Artists", artists_path
-					%li= link_to "Songs",	songs_path
-				%ul.nav.navbar-nav.navbar-right
-					%li= link_to "Log in", new_user_session_path
-					%li= link_to "Sign up", new_user_registration_path
+  %head
+    %title MusicApp
+    =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    =javascript_include_tag 'application', 'data-turbolinks-track' => true
+    =csrf_meta_tags
+    =javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'
+    =mp3_player_headers without_swfobject: true
+  %body
+    =render 'layouts/header'
 
-	.container
-		-flash.each do |name, msg|
-			= content_tag :div, msg, class: 'alert alert-info'
+    .container
+      -flash.each do |name, msg|
+        = content_tag :div, msg, class: 'alert alert-info'
 
-		=yield
-		=debug(params) if Rails.env.development?
+      =yield
+      =debug(params) if Rails.env.development?

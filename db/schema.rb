@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20150826161414) do
     t.string   "name"
     t.text     "description"
     t.string   "origin"
-    t.string   "genres"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -29,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150826161414) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "title"
+    t.string   "genre"
     t.integer  "artist_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false

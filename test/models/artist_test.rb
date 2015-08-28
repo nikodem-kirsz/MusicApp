@@ -26,8 +26,8 @@ class ArtistTest < ActiveSupport::TestCase
   	assert_not @artist.valid?
   end
 
-  test "genres should be present"	do
-  	@artist.genres = ""
+  test "genre should be present"	do
+  	@artist.genre = ""
   	assert_not @artist.valid?
   end
 

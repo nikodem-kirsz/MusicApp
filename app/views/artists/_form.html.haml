@@ -20,7 +20,4 @@
 	.form-group
 		= f.input :origin, input_html: { class: 'form-control' }
 
-	.form-group
-		= f.input :genres, :collection => ["Alternative", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "None"].sort, input_html: { class: 'form-control' }
-
 	= f.button :submit, class: 'btn btn-primary'

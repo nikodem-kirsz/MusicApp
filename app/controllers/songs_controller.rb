@@ -1,6 +1,8 @@
 class SongsController < ApplicationController
 	before_action :find_song, only: [:show, :edit, :update, :destroy]
 	before_action :find_artist, only: [:new, :create]
+	
+	GENRES = ["Alternative", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "None"]
 
 	def index
 		@songs = Song.all.order("created_at DESC")
@@ -51,6 +53,6 @@ class SongsController < ApplicationController
 			end
 
 			def song_params
-				params.require(:song).permit(:title, :image, :mp3)
+				params.require(:song).permit(:title, :genre, :image, :mp3)
 			end
 end

@@ -4,7 +4,6 @@ class CreateArtists < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :origin
-      t.string :genres
 
       t.timestamps null: false
     end
