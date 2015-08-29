@@ -2,10 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   resources :songs
   resources :artists do
-    resources :songs
+    resources :songs do
+      resources :comments
+    end
   end
 
   root "songs#index"
+  get 'select' => 'songs#selected_genre'
+  get 'my_content' => 'application#content'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

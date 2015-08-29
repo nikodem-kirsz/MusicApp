@@ -1,0 +1,9 @@
+%h1 Songs
+- @songs.each_slice(6) do |songs|
+	.row
+		- songs.each do |song|
+			.col-md-2
+				=link_to song do
+					= image_tag song.image.url(:medium), class: 'song_img'
+					%br/
+				%h4=song.title

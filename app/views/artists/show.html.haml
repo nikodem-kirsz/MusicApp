@@ -1,8 +1,8 @@
-= image_tag @artist.image.url(:medium), class: 'artist_profile_img'
+= image_tag @artist.image.url, class: 'artist_profile_img'
 %p.artist_descript= @artist.description
 %p.container
-	%h2= @artist.name
-	%h3= @artist.origin
+	%h3= @artist.name
+	%h4= @artist.origin
 
 - @artist.songs.each do |song|
 	%p= link_to song.title, song

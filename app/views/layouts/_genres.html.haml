@@ -1,7 +1,7 @@
 %li.dropdown
-	%a{:href => "#", class: "dropdown-toggle", "data-toggle" => "dropdown"}
-		Genres
-		%b.caret
-	%ul.dropdown-menu
-		- ApplicationController::GENRES.each do |genre|
-			%li= link_to "#{genre}", root_url
+  %a{:href => "#", class: "dropdown-toggle", "data-toggle" => "dropdown"}
+    Genres
+    %b.caret
+  %ul.dropdown-menu
+    - SongsController::GENRES.each do |genre|
+      %li= link_to "#{genre}", select_path(genre: genre)

@@ -50,3 +50,22 @@
 	float: left;
 	padding-left: 20px;
 }
+
+.comments_title {
+		margin-top: 2em;
+}
+.comment {
+			padding: 1em 0;
+			border-top: 2px solid #E9E9E9;
+			.lead {
+				margin-bottom: 0;
+			}
+		}
+
+.content {
+	float: left;
+}
+
+.content-image {
+	width: 70px;
+}

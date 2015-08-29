@@ -4,23 +4,17 @@
     %nav
     - if user_signed_in?
       %ul.nav.navbar-nav.navbar-left
-        %li.dropdown
-          %a{:href => "#", class: "dropdown-toggle", "data-toggle" => "dropdown"}
-            Genres
-            %b.caret
-          %ul.dropdown-menu
-            - SongsController::GENRES.each do |genre|
-              %li= link_to "#{genre}", root_url
-              
+        %li= render 'layouts/genres'
         %li= link_to "Artists", artists_path
         %li= link_to "Songs", songs_path
         %li= link_to "New artist", new_artist_path
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "My content", '#'
+        %li= link_to "My content", my_content_path
         %li= link_to "Settings", edit_user_registration_path
         %li= link_to "Log out", destroy_user_session_path, method: :delete
     - else
       %ul.nav.navbar-nav.navbar-left
+        %li= render 'layouts/genres'
         %li= link_to "Artists", artists_path
         %li= link_to "Songs", songs_path
       %ul.nav.navbar-nav.navbar-right

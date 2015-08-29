@@ -1,0 +1,21 @@
+.content
+	%h2 Songs
+	- @songs.each_slice(10) do |songs|
+		.row
+			- songs.each do |song|
+				.col-md-1
+					= link_to song do
+						= image_tag song.image.url, class: 'content-image'
+					%br/
+					%h5= song.title
+
+.content
+	%h2 Artists
+	- @artists.each_slice(10) do |artists|
+		.row
+			- artists.each do |artist|
+				.col-md-1
+					= link_to artist do
+						= image_tag artist.image.url, class: 'content-image'
+					%br/
+					%h5= artist.name

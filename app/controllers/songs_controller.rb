@@ -2,7 +2,11 @@ class SongsController < ApplicationController
 	before_action :find_song, only: [:show, :edit, :update, :destroy]
 	before_action :find_artist, only: [:new, :create]
 	
-	GENRES = ["Alternative", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "None"]
+	GENRES = ["Alternative", "Rock", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "None"]
+
+	def selected_genre
+		@songs = Song.selected(params[:genre])
+	end
 
 	def index
 		@songs = Song.all.order("created_at DESC")
