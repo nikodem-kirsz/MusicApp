@@ -4,7 +4,7 @@
 	%h3= @artist.name
 	%h4= @artist.origin
 	
-	-if @artist.allow_other_to_add_songs?
+	-if @artist.user == current_user || @artist.allow_other_to_add_songs?
 		=link_to "Upload song", new_artist_song_path(@artist), class: 'btn btn-default'
 	-if @artist.user == current_user
 		=link_to "Edit artist", edit_artist_path(@artist), class: 'btn btn-default'

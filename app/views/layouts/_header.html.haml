@@ -8,6 +8,7 @@
         %li= link_to "Songs", songs_path
         %li= link_to "Artists", artists_path
       %ul.nav.navbar-nav.navbar-right
+        =render 'layouts/search'
         %li= link_to "New artist", new_artist_path
         =render 'layouts/user'
     - else
@@ -16,5 +17,6 @@
         %li= link_to "Artists", artists_path
         %li= link_to "Songs", songs_path
       %ul.nav.navbar-nav.navbar-right
+        =render 'layouts/search'
         %li= link_to "Log in", new_user_session_path
         %li= link_to "Sign up", new_user_registration_path

@@ -10,6 +10,14 @@ class SongsController < ApplicationController
 		@songs = Song.selected(params[:genre])
 	end
 
+	def search
+		if params[:search].present?
+			@songs = Song.search(params[:search])
+		else
+			@songs = Song.all
+		end
+	end
+
 	def index
 		@songs = Song.all.order("created_at DESC")
 	end
