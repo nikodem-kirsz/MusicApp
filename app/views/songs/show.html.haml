@@ -1,15 +1,15 @@
-= image_tag @song.image.url(:medium), class: "song_image"
+= image_tag @song.image.url, class: "song_img_profile"
 %br/
 %h3= @song.title
-%h4= @song.artist.name
-%h4= @song.genre
+%h4= link_to @song.artist.name, artist_path(@song.artist)
+%h4= link_to @song.genre, select_path(genre: @song.genre)
 = mp3_player @song.mp3.url
 %br/
+%br/
 - if @song.artist.user == current_user
-	= link_to "Edit", edit_artist_song_path(@song.artist, @song), class: "btn btn-default"
-	= link_to "Delete", song_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
-%br/
-%br/
+	%p.comment
+		= link_to "Edit", edit_artist_song_path(@song.artist, @song), class: "btn btn-default"
+		= link_to "Delete", song_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
 
 / <h3 class="comments_title">
 /   <%= @link.comments.count %> Comments
@@ -28,8 +28,7 @@
 
 = render :partial => @song.comments
 
--if user_signed_in?
-	= simple_form_for [@song.artist, @song, Comment.new] do |f|
-		= f.text_area :body, cols: "80", rows: "7", input_html: { class: 'form-control' }
-		%br/
-		= f.submit "Add Comment", class: 'btn btn-sm btn-default'
+= simple_form_for [@song.artist, @song, Comment.new] do |f|
+	= f.text_area :body, cols: "80", rows: "7", input_html: { class: 'form-control' }
+	%br/
+	= f.submit "Add Comment", class: 'btn btn-sm btn-default'

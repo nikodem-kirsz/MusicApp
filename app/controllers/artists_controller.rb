@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
 	before_action :find_artist, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+	before_action :correct_user, only: [:edit, :update, :destroy]
 
 	def my_content
   	content = content(current_user)
@@ -46,12 +47,9 @@ class ArtistsController < ApplicationController
 
 		private
 
-			def logged_in?
-				unless !current_user.nil?
-					flash[:danger] = "You must be logged in to add content"
-					redirect_to new_user_session_url
-				end
-				
+			def correct_user
+				@artist = Artist.find(params[:id])
+				redirect_to root_url unless @artist.user == current_user
 			end
 
 			def find_artist
@@ -59,6 +57,6 @@ class ArtistsController < ApplicationController
 			end
 
 			def artist_params
-				params.require(:artist).permit(:name, :image, :description, :origin)
+				params.require(:artist).permit(:name, :image, :description, :origin, :allow_other_to_add_songs)
 			end
 end

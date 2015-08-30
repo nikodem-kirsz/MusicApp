@@ -1,8 +1,10 @@
 class SongsController < ApplicationController
-	before_action :find_song, only: [:show, :edit, :update, :destroy]
-	before_action :find_artist, only: [:new, :create]
+	before_action :find_song, 				 only: [:show, :edit, :update, :destroy]
+	before_action :find_artist, 			 only: [:new, :create]
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+	before_action :correct_user, 			 only: [:edit, :update, :destroy]
 	
-	GENRES = ["Alternative", "Rock", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "None"]
+	GENRES = ["Alternative", "Rock", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "Pop", "None"]
 
 	def selected_genre
 		@songs = Song.selected(params[:genre])
@@ -47,6 +49,11 @@ class SongsController < ApplicationController
 	end
 
 		private
+
+			def correct_user
+				@song = Song.find(params[:id])
+				redirect_to root_url unless @song.artist.user == current_user
+			end
 
 			def find_song
 				@song = Song.find(params[:id])

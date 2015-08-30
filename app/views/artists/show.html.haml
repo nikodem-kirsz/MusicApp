@@ -3,10 +3,21 @@
 %p.container
 	%h3= @artist.name
 	%h4= @artist.origin
+	
+	-if @artist.allow_other_to_add_songs?
+		=link_to "Upload song", new_artist_song_path(@artist), class: 'btn btn-default'
+	-if @artist.user == current_user
+		=link_to "Edit artist", edit_artist_path(@artist), class: 'btn btn-default'
+		=link_to "Remove artist", artist_path(@artist), method: :delete, class: 'btn btn-default'
 
-- @artist.songs.each do |song|
-	%p= link_to song.title, song
+	-if @artist.songs.any?
+		%h3.comment Songs
+		- @artist.songs.each_slice(10) do |songs|
+			.row
+				- songs.each do |song|
+					.col-md-1
+						= link_to song do
+							= image_tag song.image.url, class: 'content-image'
+						%br/
+						%h5= song.title
 
-=link_to "Add song", new_artist_song_path(@artist), class: 'btn btn primary'
-=link_to "Edit artist", edit_artist_path(@artist), class: 'btn btn primary'
-=link_to "Remove artist", artist_path(@artist), method: :delete, class: 'btn btn-danger'

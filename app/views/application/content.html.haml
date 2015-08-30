@@ -1,5 +1,7 @@
-.content
-	%h2 Songs
+- if @songs.empty?
+	%h3 No songs added
+- else
+	%h3 Songs
 	- @songs.each_slice(10) do |songs|
 		.row
 			- songs.each do |song|
@@ -8,9 +10,12 @@
 						= image_tag song.image.url, class: 'content-image'
 					%br/
 					%h5= song.title
-
-.content
-	%h2 Artists
+	%br/
+.content_songs
+- if @artists.empty?
+	%h3 No artists added
+- else
+	%h3 Artists
 	- @artists.each_slice(10) do |artists|
 		.row
 			- artists.each do |artist|

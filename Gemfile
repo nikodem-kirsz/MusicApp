@@ -17,6 +17,7 @@ gem 'simple_form', '~> 3.1.0'
 gem "paperclip", "~> 4.3"
 gem 'devise', '~> 3.5.2'
 gem 'mp3_player'
+gem 'faker', '~> 1.5.0'
 
 group :development, :test do
   gem 'byebug'

@@ -37,7 +37,10 @@
 			transform: scale(1.1);
 		}
 	}
-
+.song_img_profile {
+	width: 180px;
+	height: 180px;
+}
 .artist_profile_img {
 	width: 	260px;
 	float: left;
@@ -62,9 +65,12 @@
 			}
 		}
 
-.content {
-	float: left;
-}
+.content_songs {
+			border-top: 2px solid #E9E9E9;
+			.lead {
+				margin-bottom: 0;
+			}
+		}
 
 .content-image {
 	width: 70px;

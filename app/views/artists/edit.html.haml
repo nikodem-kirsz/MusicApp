@@ -1,6 +1,6 @@
 .col-md-4	
-	%h1 Edit artist
+	%h3= "Edit artist " + @artist.name
 
 	= render 'form'
-
-	= link_to "Cancel", @artist
+	%br/
+	= link_to "Cancel", @artist, class: 'btn btn-default'
