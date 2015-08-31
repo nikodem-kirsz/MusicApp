@@ -1,4 +1,5 @@
 class Song < ActiveRecord::Base
+  # /etc/init.d/elasticsearch restart
   searchkick
 	belongs_to :artist
   has_many :comments, dependent: :destroy

@@ -14,7 +14,7 @@ class SongsController < ApplicationController
 		if params[:search].present?
 			@songs = Song.search(params[:search])
 		else
-			@songs = Song.all
+			@songs = Song.all.order('created_at DESC')
 		end
 	end
 
