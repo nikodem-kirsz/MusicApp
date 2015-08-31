@@ -10,22 +10,24 @@ class Song < ActiveRecord::Base
   
   has_attached_file :image,
                     :storage => :s3,
-                    :bucket =>S3_CONFIG["bucket"],
+                    :bucket => ENV['S3_BUCKET_NAME'],
                     :s3_credentials => {
-                                        :access_key_id => S3_CONFIG["access_key_id"],
-                                        :secret_access_key => S3_CONFIG["secret_access_key"]
+                                        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+                                        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
                                        }
 
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/png', 'image/bmp']
 
   has_attached_file :mp3,
                     :storage => :s3,
-                    :bucket =>S3_CONFIG["bucket"],
+                    :bucket => ENV['S3_BUCKET_NAME'],
                     :s3_credentials => {
-                                        :access_key_id => S3_CONFIG["access_key_id"],
-                                        :secret_access_key => S3_CONFIG["secret_access_key"]
+                                        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+                                        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
                                        }
 
+  validates_attachment_content_type :mp3, content_type: ['audio/mp3', 'audio/mpeg']
+                    
   def Song.selected(genre)
     songs = []
     Song.all.each do |song|
