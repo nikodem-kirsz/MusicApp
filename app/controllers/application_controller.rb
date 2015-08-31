@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def content
-  	@artists = Artist.all.select { |a| a.user_id == current_user.id }
-  	@artists.sort! { |a,b| b.created_at <=> a.created_at }
-  	@songs = Song.all.select { |s| s.artist.user_id == current_user.id }
-  	@songs.sort! { |a,b| b.created_at <=> a.created_at }	
+    @artists = Artist.all.select { |a| a.user_id == current_user.id }
+    @artists.sort! { |a,b| b.created_at <=> a.created_at }
+    @songs = Song.all.select { |s| s.artist.user_id == current_user.id }
+    @songs.sort! { |a,b| b.created_at <=> a.created_at }  
   end
 
 end

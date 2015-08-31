@@ -1,14 +1,14 @@
 class Song < ActiveRecord::Base
   # /etc/init.d/elasticsearch restart
   searchkick
-	belongs_to :artist
+  belongs_to :artist
   has_many :comments, dependent: :destroy
-	validates :title, presence: true, length: { maximum: 30 }
-	validates :artist_id, presence: true
-	validates :image, :mp3, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :artist_id, presence: true
+  validates :image, :mp3, presence: true
   validates :genre, presence: true, inclusion: { in: %w(Alternative Rock Blues Electronic Folk Grunge New\ Wave Punk\ Rock Metal Pop None) }
 
-	has_attached_file :image
+  has_attached_file :image
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/png', 'image/bmp']
 
   has_attached_file :mp3

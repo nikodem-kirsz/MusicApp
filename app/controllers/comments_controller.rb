@@ -1,24 +1,24 @@
 class CommentsController < ApplicationController
-	before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :destroy]
 
-	def create
-		@song = Song.find(params[:song_id])
-		@comment = @song.comments.build(comment_params)
-		@comment.user = current_user
+  def create
+    @song = Song.find(params[:song_id])
+    @comment = @song.comments.build(comment_params)
+    @comment.user = current_user
     
     if @comment.save
       redirect_to @song
     else
       render 'new'
     end
-	end
+  end
 
-	def destroy
+  def destroy
     @song = Song.find(params[:song_id])
-		@comment.destroy
+    @comment.destroy
     redirect_to @song
-	end
+  end
 
   def edit
     @comment = Comment.find(params[:id])
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     end
   end
 
-	private
+  private
 
     def set_comment
       @comment = Comment.find(params[:id])
