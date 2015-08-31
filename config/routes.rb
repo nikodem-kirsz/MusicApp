@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root "songs#index"
   get 'select' => 'songs#selected_genre'
   get 'my_content' => 'application#content'
+  get 'most_popular' => 'songs#most_popular'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

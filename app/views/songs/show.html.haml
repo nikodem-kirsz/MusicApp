@@ -17,3 +17,5 @@
 	= f.text_area :body, cols: "80", rows: "7", input_html: { class: 'form-control' }
 	%br/
 	= f.submit "Add Comment", class: 'btn btn-sm btn-default'
+
+/ - @song.update_attributes(:visits => @song.visits + 1)

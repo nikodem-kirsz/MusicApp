@@ -18,6 +18,10 @@ class SongsController < ApplicationController
     end
   end
 
+  def most_popular
+    @songs = Song.select(:id, :title, :image_file_name, :visits).from(Song.all).where('visits>0')
+  end
+
   def index
     @songs = Song.all.order("created_at DESC")
   end
