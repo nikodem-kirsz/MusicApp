@@ -7,12 +7,24 @@ class Song < ActiveRecord::Base
   validates :artist_id, presence: true
   validates :image, :mp3, presence: true
   validates :genre, presence: true, inclusion: { in: %w(Alternative Rock Blues Electronic Folk Grunge New\ Wave Punk\ Rock Metal Pop None) }
+  
+  has_attached_file :image,
+                    :storage => :s3,
+                    :bucket =>S3_CONFIG["bucket"],
+                    :s3_credentials => {
+                                        :access_key_id => S3_CONFIG["access_key_id"],
+                                        :secret_access_key => S3_CONFIG["secret_access_key"]
+                                       }
 
-  has_attached_file :image
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/png', 'image/bmp']
 
-  has_attached_file :mp3
-  validates_attachment_content_type :mp3, content_type: ['audio/mp3', 'audio/mpeg']
+  has_attached_file :mp3,
+                    :storage => :s3,
+                    :bucket =>S3_CONFIG["bucket"],
+                    :s3_credentials => {
+                                        :access_key_id => S3_CONFIG["access_key_id"],
+                                        :secret_access_key => S3_CONFIG["secret_access_key"]
+                                       }
 
   def Song.selected(genre)
     songs = []

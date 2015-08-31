@@ -1,0 +1,9 @@
+%h2 Most popular songs
+- @songs.each_slice(6) do |songs|
+	.row
+		- songs.each do |song|
+			.col-md-2
+				=link_to song do
+					= image_tag song.image.url, class: 'song_img'
+					%br/
+				%h5=song.title

@@ -1,0 +1,9 @@
+# config/s3.yml
+development:
+  access_key_id: Niko
+  secret_access_key: foobar
+  bucket: musicapp
+production:
+  access_key_id: Niko
+  secret_access_key: foobar
+  bucket: musicapp
