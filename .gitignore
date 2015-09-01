@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/config/initializers/env.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
