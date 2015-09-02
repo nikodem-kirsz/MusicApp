@@ -1,21 +1,35 @@
-= image_tag @song.image.url, class: "song_img_profile"
-%br/
-%h3= @song.title
-%h4= link_to @song.artist.name, artist_path(@song.artist)
-%h4= link_to @song.genre, select_path(genre: @song.genre)
-= mp3_player @song.mp3.url
-%br/
-%br/
-- if @song.artist.user == current_user
-	%p.comment
-		= link_to "Edit", edit_artist_song_path(@song.artist, @song), class: "btn btn-default"
-		= link_to "Delete", song_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+.container
+	.row
+		.col-md-4
+			= image_tag @song.image.url, class: "song_img_profile"
+			%br/
+			%h3= @song.title
+			%h4= link_to @song.artist.name, artist_path(@song.artist)
+			%h4= link_to @song.genre, select_path(genre: @song.genre)
+			= mp3_player @song.mp3.url
+			%br/
+			%br/
+			- if @song.artist.user == current_user
+				%p.comment
+					= link_to "Edit", edit_artist_song_path(@song.artist, @song), class: "btn btn-default"
+					= link_to "Delete", song_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
 
-= render :partial => @song.comments
+			= render :partial => @song.comments
 
-= simple_form_for [@song.artist, @song, Comment.new] do |f|
-	= f.text_area :body, cols: "80", rows: "7", input_html: { class: 'form-control' }
-	%br/
-	= f.submit "Add Comment", class: 'btn btn-sm btn-default'
-
-/ - @song.update_attributes(:visits => @song.visits + 1)
+			= simple_form_for [@song.artist, @song, Comment.new] do |f|
+				= f.text_area :body, cols: "40", rows: "7", input_html: { class: 'form-control' }
+				%br/
+				= f.submit "Add Comment", class: 'btn btn-sm btn-default'
+		
+		.col-md-5
+			-if !@songs.any?
+				%h2 No results found
+			-else
+				- @songs.each_slice(6) do |songs|
+					.row
+						- songs.each do |song|
+							.col-md-3
+								=link_to song do
+									= image_tag song.image.url, class: 'show-image'
+									%br/
+								%h5=song.title

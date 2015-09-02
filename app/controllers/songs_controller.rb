@@ -27,6 +27,7 @@ class SongsController < ApplicationController
   end
 
   def show
+    @songs = Song.selected(@song.genre)
   end
 
   def new

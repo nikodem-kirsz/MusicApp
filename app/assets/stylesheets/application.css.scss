@@ -79,3 +79,19 @@
 .artist_name_index {
 	padding-left: 50px;
 }
+
+song_images {
+	float: left;
+	padding-left: 20px;
+}
+
+.show-image {
+	width: 100px;
+	-webkit-transition: all .3s ease-out;
+	  -moz-transition: all .3s ease-out;
+	  -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+		&:hover {
+			transform: scale(1.1);
+		}
+}
