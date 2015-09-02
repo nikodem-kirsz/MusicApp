@@ -14,18 +14,19 @@
 					= link_to "Edit", edit_artist_song_path(@song.artist, @song), class: "btn btn-default"
 					= link_to "Delete", song_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
 
-			= render :partial => @song.comments
-
 			= simple_form_for [@song.artist, @song, Comment.new] do |f|
 				= f.text_area :body, cols: "40", rows: "7", input_html: { class: 'form-control' }
 				%br/
 				= f.submit "Add Comment", class: 'btn btn-sm btn-default'
+				
+			= render :partial => @song.comments
+
 		
 		.col-md-5
 			-if !@songs.any?
 				%h2 No results found
 			-else
-				- @songs.each_slice(6) do |songs|
+				- @songs.each_slice(4) do |songs|
 					.row
 						- songs.each do |song|
 							.col-md-3
