@@ -3,12 +3,6 @@ class ArtistsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-  def my_content
-    content = content(current_user)
-    @artists = content[:artists]
-    @songs = content[:songs]
-  end
-
   def index
     @artists = Artist.all.order("created_at DESC")
   end
