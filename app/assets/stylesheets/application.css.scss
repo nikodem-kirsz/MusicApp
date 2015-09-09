@@ -22,10 +22,20 @@
 }
 
 .bg {
-	background-color: black;
+	border-right: 2px solid #E9E9E9;
 }
 
-.artist_img, .song_img {
+	.navbar-brand {
+		text-transform: uppercase;
+		letter-spacing: -1px;
+		font-weight: bold;
+		a {
+			color: white;
+		}
+		font-size: 20px;
+	}
+
+.song_img, .artist_img {
 		width: 180px;
 		height: 180px;
 		border-radius: 25px;
@@ -37,6 +47,7 @@
 			transform: scale(1.1);
 		}
 	}
+
 .song_img_profile {
 	width: 180px;
 	height: 180px;
@@ -74,6 +85,7 @@
 
 .content-image {
 	width: 70px;
+	border-radius: 10px;
 }
 
 .artist_name_index {
@@ -87,11 +99,6 @@ song_images {
 
 .show-image {
 	width: 100px;
-	-webkit-transition: all .3s ease-out;
-	  -moz-transition: all .3s ease-out;
-	  -o-transition: all .3s ease-out;
-    transition: all .3s ease-out;
-		&:hover {
-			transform: scale(1.1);
-		}
+	border-radius: 10px;
 }
+

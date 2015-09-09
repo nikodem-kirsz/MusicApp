@@ -1,10 +1,30 @@
+require 'will_paginate/array'
+
 class SongsController < ApplicationController
-  before_action :find_song,          only: [:show, :edit, :update, :destroy]
+  before_action :find_song,          only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :find_artist,        only: [:new, :create]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :downvote]
   before_action :correct_user,       only: [:edit, :update, :destroy]
   
   GENRES = ["Alternative", "Rock", "Blues", "Punk Rock", "Grunge", "New Wave", "Folk", "Electronic", "Metal", "Pop", "None"]
+
+  def most_liked
+    @songs = Song.most_liked 
+  end
+
+  def favorites
+    @songs = Song.favorites(current_user)
+  end
+
+  def upvote
+    @song.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @song.downvote_by current_user
+    redirect_to :back
+  end
 
   def selected_genre
     @songs = Song.selected(params[:genre])
@@ -18,16 +38,14 @@ class SongsController < ApplicationController
     end
   end
 
-  def most_popular
-    @songs = Song.select(:id, :title, :image_file_name, :visits).from(Song.all).where('visits>0')
-  end
-
   def index
     @songs = Song.all.order("created_at DESC")
   end
 
   def show
-    @songs = Song.selected(@song.genre)
+    per_page = 9
+    @songs = Song.selected(@song.genre).paginate(:page => params[:page], :per_page => per_page)
+    # @most_liked_songs = Song.most_liked.first(4)
   end
 
   def new

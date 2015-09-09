@@ -3,7 +3,8 @@
 %p.container
 	%h3= @artist.name
 	%h4= @artist.origin
-	
+	%h4= link_to @artist.user.email, user_path(user_id: @artist.user_id)
+
 	-if @artist.user == current_user || @artist.allow_other_to_add_songs?
 		=link_to "Upload song", new_artist_song_path(@artist), class: 'btn btn-default'
 	-if @artist.user == current_user

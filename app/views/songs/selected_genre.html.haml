@@ -1,7 +1,7 @@
 -if !@songs.any?
 	%h2 No results found
 -else
-	%h3= @songs[0].genre + " songs"
+	%h4= @songs[0].genre + " songs"
 	- @songs.each_slice(6) do |songs|
 		.row
 			- songs.each do |song|

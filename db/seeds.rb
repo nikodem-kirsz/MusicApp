@@ -42,3 +42,12 @@ end
                         mp3: File.open("#{Rails.root}/app/assets/mp3s/#{SONGS.sample}")
                         ).save
 end
+
+50.times do |n|
+     user = User.all.sample
+     song = Song.all.sample
+     song.comments.build(body: "Great guitar riffs, quite decent ambience and rythm",
+                         user_id: user.id
+                         ).save
+     song.upvote_by user
+end
