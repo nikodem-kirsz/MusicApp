@@ -17,9 +17,10 @@
     - else
       %ul.nav.navbar-nav.navbar-left
         %li= render 'layouts/genres'
-        %li= link_to "Artists", artists_path
         %li= link_to "Songs", songs_path
+        %li= link_to "Artists", artists_path
         %li= link_to "Most liked", most_liked_path
+        %li= link_to "Statistics", statistics_path
       %ul.nav.navbar-nav.navbar-right
         =render 'layouts/search'
         %li= link_to "Log in", new_user_session_path
