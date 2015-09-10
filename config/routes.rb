@@ -1,29 +1,33 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :songs do
 
+  root "songs#index"
+  devise_for :users
+
+  resources :songs do
     member do
       put "like", to: "songs#upvote"
       put "dislike", to: "songs#downvote"
     end
-
     collection do
       get 'search'
     end
-
   end
+
   resources :artists do
     resources :songs do
       resources :comments
     end
   end
 
-  root "songs#index"
-  get 'select' => 'songs#selected_genre'
+  # User profile and statistics
   get '/user/:user_id' => 'application#user', :as => :user
+  get 'statistics' => 'application#statistics'
+
+  # Songs
   get 'most_liked' => 'songs#most_liked'
   get 'favorites' => 'songs#favorites'
-  get 'statistics' => 'application#statistics'
+  get 'select' => 'songs#selected_genre'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

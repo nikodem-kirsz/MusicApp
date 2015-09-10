@@ -4,7 +4,7 @@ class Song < ActiveRecord::Base
   acts_as_votable
   belongs_to :artist
   has_many :comments, dependent: :destroy
-  validates :title, presence: true, length: { maximum: 30 }, uniqueness: true
+  validates :title, presence: true, length: { maximum: 30 }
   validates :artist_id, presence: true
   validates :image, :mp3, presence: true
   validates :genre, presence: true, inclusion: { in: %w(Alternative Rock Blues Electronic Folk Grunge New\ Wave Punk\ Rock Metal Pop None) }
