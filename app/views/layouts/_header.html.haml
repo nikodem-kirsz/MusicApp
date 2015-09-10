@@ -3,7 +3,7 @@
     .navbar-brand= link_to "Music App", root_path
     %nav
     - if user_signed_in?
-      %ul.nav.navbar-nav.navbar-left
+      %ul.nav.navbar-nav.navbar-left.navbar-menu
         %li= render 'layouts/genres'
         %li= link_to "Songs", songs_path
         %li= link_to "Artists", artists_path
@@ -12,10 +12,10 @@
         %li= link_to "Statistics", statistics_path
       %ul.nav.navbar-nav.navbar-right
         =render 'layouts/search'
-        %li= link_to "New artist", new_artist_path
+        %li.navbar-menu= link_to "New artist", new_artist_path
         =render 'layouts/user'
     - else
-      %ul.nav.navbar-nav.navbar-left
+      %ul.nav.navbar-nav.navbar-left.navbar-menu
         %li= render 'layouts/genres'
         %li= link_to "Songs", songs_path
         %li= link_to "Artists", artists_path
