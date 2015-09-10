@@ -46,7 +46,7 @@ end
 50.times do |n|
      user = User.all.sample
      song = Song.all.sample
-     song.comments.build(body: "Great guitar riffs, quite decent ambience and rythm",
+     song.comments.build(body: "Great guitar riffs, amazing drumming, sound is excellent ",
                          user_id: user.id
                          ).save
      song.upvote_by user
