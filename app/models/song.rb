@@ -10,9 +10,11 @@ class Song < ActiveRecord::Base
   validates :genre, presence: true, inclusion: { in: %w(Alternative Rock Blues Electronic Folk Grunge New\ Wave Punk\ Rock Metal Pop None) }
   
   has_attached_file :image
+  validates :image, presence: true
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/png', 'image/bmp']
 
   has_attached_file :mp3
+  validates :mp3, presence: true
   validates_attachment_content_type :mp3, content_type: ['audio/mp3', 'audio/mpeg']
   
   def Song.most_liked
