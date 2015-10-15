@@ -13,22 +13,14 @@
 default: &default
     adapter: postgresql
     encoding: utf8
-    database: music_app_test
+    database: music_app
     pool: 5
-    username: nikodem # or your system username
-    password: 123
 
 development:
   <<: *default
-  # database: db/development.sqlite3
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  # database: db/test.sqlite3
 
 production:
   <<: *default
-  # database: db/production.sqlite3
