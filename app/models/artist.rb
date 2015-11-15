@@ -6,8 +6,8 @@ class Artist < ActiveRecord::Base
   validates :origin, presence: true, length: { maximum: 50 }
   validates :description, presence: true
   validates :user_id, presence: true
+  validates :image, presence: true
 
-<<<<<<< HEAD
   has_attached_file :image,
                     :storage => :s3,
                     :s3_credentials => {
@@ -16,9 +16,5 @@ class Artist < ActiveRecord::Base
                                         :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
                                        }
 
-=======
-  has_attached_file :image
-  validates :image, presence: true
->>>>>>> rspec
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/png', 'image/bmp']
 end

@@ -45,7 +45,6 @@ class SongsController < ApplicationController
   def show
     per_page = 9
     @songs = Song.selected(@song.genre).paginate(:page => params[:page], :per_page => per_page)
-    # @most_liked_songs = Song.most_liked.first(4)
   end
 
   def new
